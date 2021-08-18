@@ -8,9 +8,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL95Dialect
-        show_sql: false
+        show_sql: true
         temp:
           use_jdbc_metadata_defaults: false
+    generate-ddl: false
   liquibase:
     change-log: "classpath:/db/changelog/db.changelog-master.yml"
     liquibase-schema: "liquibase"
+    enabled: true

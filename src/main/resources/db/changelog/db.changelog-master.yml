@@ -9,58 +9,25 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: UUID
+                  type: VARCHAR(255)
                   autoIncrement: false
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: username
-                  type: varchar(50)
+                  type: varchar(255)
                   constraints:
                     unique: true
                     nullable: false
               - column:
                   name: password
-                  type: varchar(512)
+                  type: varchar(255)
                   constraints:
                     nullable: false
-  - changeSet:
-      id: 2
-      author: your_liquibase_username
-      comment: "Create admin user"
-      changes:
-        - insert:
-            tableName: users
-            columns:
-              - column:
-                  name: id
-                  value: "9b6a06c6-be0b-487b-897b-83567554cc7f"
-              - column:
-                  name: username
-                  value: "admin"
-              - column:
-                  name: password
-                  value: "admin"
-        - insert:
-            tableName: users
-            columns:
-              - column:
-                  name: id
-                  value: "d1cdea5e-c9a1-471d-8efc-980ee775b1ba"
-              - column:
-                  name: username
-                  value: "guest"
-              - column:
-                  name: password
-                  value: "guest"
-      rollback:
-        - delete:
-            tableName: users
-            where: username in ('admin', 'guest')
 
   - changeSet:
-      id: 3
+      id: 2
       author: rbilyalov
       comment: create table spentResource
       changes:
