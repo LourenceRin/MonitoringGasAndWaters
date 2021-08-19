@@ -1,10 +1,7 @@
 package com.example.monitoringgasandwater.controller;
 
 import com.example.monitoringgasandwater.model.Developer;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,16 +29,14 @@ public class DeveloperRestController {
                 .orElse(null);
     }
 
-//    @PostMapping
-//    @PreAuthorize("hasAuthority('developers:write')")
-//    public Developer create(@RequestBody Developer developer) {
-//        this.DEVELOPERS.add(developer);
-//        return developer;
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    @PreAuthorize("hasAuthority('developers:write')")
-//    public void deleteById(@PathVariable Long id) {
-//        this.DEVELOPERS.removeIf(developer -> developer.getId().equals(id));
-//    }
+    @PostMapping
+    public Developer create(@RequestBody Developer developer) {
+        this.DEVELOPERS.add(developer);
+        return developer;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id) {
+        this.DEVELOPERS.removeIf(developer -> developer.getId().equals(id));
+    }
 }
