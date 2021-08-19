@@ -8,7 +8,9 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-
+@Setter
+@Getter
+@NoArgsConstructor
 public class Expense {
     private UUID id;
     private String typeResource;
@@ -20,32 +22,5 @@ public class Expense {
         model.setTypeResource(entity.getTypeResource());
         model.setSpentResource(entity.getSpentResource());
         return model;
-    }
-
-    public Expense() {
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getTypeResource() {
-        return typeResource;
-    }
-
-    public void setTypeResource(String typeResource) {
-        this.typeResource = typeResource;
-    }
-
-    public Long getSpentResource() {
-        return spentResource;
-    }
-
-    public void setSpentResource(Long spentResource) {
-        this.spentResource = spentResource;
     }
 }
