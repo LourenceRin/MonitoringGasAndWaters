@@ -14,7 +14,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Table(name = "expense")
-public class EntityExpenses {
+public class ExpensesEntity {
 
     @Id
     @GeneratedValue(generator = "uuid2")

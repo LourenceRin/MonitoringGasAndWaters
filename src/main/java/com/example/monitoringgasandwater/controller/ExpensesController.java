@@ -1,24 +1,41 @@
 package com.example.monitoringgasandwater.controller;
 
-import com.example.monitoringgasandwater.entity.EntityExpenses;
+import com.example.monitoringgasandwater.entity.ExpensesEntity;
+import com.example.monitoringgasandwater.exceptions.ExpenseNotFoundException;
 import com.example.monitoringgasandwater.repository.ExpensesRepository;
+import com.example.monitoringgasandwater.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/expenses")
 public class ExpensesController {
 
     @Autowired
-    private ExpensesRepository repository;
+    private ExpenseService expenseService;
 
-    @PostMapping
-    public ResponseEntity addExpense(@RequestBody EntityExpenses expense){
+    @PostMapping("/addExpense")
+    public ResponseEntity addExpense(@RequestBody ExpensesEntity expense){
         try{
-            repository.save(expense);
+            expenseService.addExpense(expense);
             return ResponseEntity.ok("Затраты были сохранены!");
         }catch (Exception e){
+            return ResponseEntity.badRequest().body("Error!");
+        }
+    }
+
+    @GetMapping("/expense")
+    public ResponseEntity getExpenses(@RequestParam UUID id){
+        try{
+            return ResponseEntity.ok(expenseService.getOne(id));
+        }catch (ExpenseNotFoundException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        catch (Exception e){
             return ResponseEntity.badRequest().body("Error!");
         }
     }
