@@ -1,7 +1,6 @@
 package com.example.monitoringgasandwater.model;
 
 import com.example.monitoringgasandwater.entity.ExpensesEntity;
-import com.example.monitoringgasandwater.entity.UserEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -15,7 +15,19 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: username
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: firstName
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: lastName
                   type: varchar(255)
                   constraints:
                     unique: true
@@ -37,21 +49,13 @@ databaseChangeLog:
   - changeSet:
       id: 3
       author: rbilyalov
-      comment: add new columnt for users
-      changes:
-        - sqlFile:
-            path: db/changelog/sql/addNewColumnForUsers.sql
-
-  - changeSet:
-      id: 4
-      author: rbilyalov
       comment: add role for users
       changes:
         - sqlFile:
             path: db/changelog/sql/addRoleForUsers.sql
 
   - changeSet:
-      id: 5
+      id: 4
       author: rbilyalov
       comment: add status for users
       changes:

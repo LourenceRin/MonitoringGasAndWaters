@@ -1,3 +1,3 @@
 --добавление новых стобцов в таблицу users.
 ---------------------------------------------------------------------------------------
-alter table users add roleuser VARCHAR(20) null;
+alter table users add role VARCHAR(20) null;
