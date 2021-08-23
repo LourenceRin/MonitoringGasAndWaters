@@ -33,3 +33,27 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: db/changelog/sql/spentResource.sql
+
+  - changeSet:
+      id: 3
+      author: rbilyalov
+      comment: add new columnt for users
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/addNewColumnForUsers.sql
+
+  - changeSet:
+      id: 4
+      author: rbilyalov
+      comment: add role for users
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/addRoleForUsers.sql
+
+  - changeSet:
+      id: 5
+      author: rbilyalov
+      comment: add status for users
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/addStatusForUsers.sql
