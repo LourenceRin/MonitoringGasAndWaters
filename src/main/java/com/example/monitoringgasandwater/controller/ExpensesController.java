@@ -24,19 +24,26 @@ public class ExpensesController {
             expenseService.addExpense(expense);
             return ResponseEntity.ok("Затраты были сохранены!");
         }catch (Exception e){
-            return ResponseEntity.badRequest().body("Error!");
+            return ResponseEntity.badRequest().body("Произошла ошибка!");
         }
     }
 
-    @GetMapping("/expense")
+    @GetMapping
     public ResponseEntity getExpenses(@RequestParam UUID id){
         try{
             return ResponseEntity.ok(expenseService.getOne(id));
-        }catch (ExpenseNotFoundException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
         }
         catch (Exception e){
-            return ResponseEntity.badRequest().body("Error!");
+            return ResponseEntity.badRequest().body("Произошла ошибка!");
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteUser(@PathVariable UUID id) {
+        try {
+            return ResponseEntity.ok(expenseService.delete(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
 }

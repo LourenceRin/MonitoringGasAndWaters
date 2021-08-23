@@ -20,10 +20,16 @@ public class ExpenseService {
     }
 
     public Expense getOne(UUID id) throws ExpenseNotFoundException {
-        ExpensesEntity expensesEntity = repository.getById(id);
+        ExpensesEntity expensesEntity = repository.findById(id).get();
         if (expensesEntity == null){
             throw new ExpenseNotFoundException("Показатель не найден!");
         }
         return Expense.toModel(expensesEntity);
     }
+
+    public UUID delete(UUID id) {
+        repository.deleteById(id);
+        return id;
+    }
+
 }

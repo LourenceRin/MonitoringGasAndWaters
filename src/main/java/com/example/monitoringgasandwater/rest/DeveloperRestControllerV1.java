@@ -1,4 +1,4 @@
-package com.example.monitoringgasandwater.controller;
+package com.example.monitoringgasandwater.rest;
 
 import com.example.monitoringgasandwater.model.Developer;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,12 +11,12 @@ import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/v1/developers")
-public class DeveloperRestController {
+public class DeveloperRestControllerV1 {
 
     private List<Developer> DEVELOPERS = Stream.of(
-            new Developer(1L, "Developer"),
-            new Developer(2L, "Developer1"),
-            new Developer(3L, "Developer2")
+            new Developer(1L, "Developer", "Developer"),
+            new Developer(2L, "Developer1", "First"),
+            new Developer(3L, "Developer2", "Second")
     ).collect(Collectors.toList());
 
     @GetMapping
