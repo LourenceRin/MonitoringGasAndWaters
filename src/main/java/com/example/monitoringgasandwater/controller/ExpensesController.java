@@ -1,14 +1,13 @@
 package com.example.monitoringgasandwater.controller;
 
 import com.example.monitoringgasandwater.entity.ExpensesEntity;
-import com.example.monitoringgasandwater.exceptions.ExpenseNotFoundException;
 import com.example.monitoringgasandwater.repository.ExpensesRepository;
 import com.example.monitoringgasandwater.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -29,13 +28,8 @@ public class ExpensesController {
     }
 
     @GetMapping
-    public ResponseEntity getExpenses(@RequestParam UUID id){
-        try{
-            return ResponseEntity.ok(expenseService.getOne(id));
-        }
-        catch (Exception e){
-            return ResponseEntity.badRequest().body("Произошла ошибка!");
-        }
+    public ResponseEntity<List<ExpensesEntity>> getAll(){
+        return ResponseEntity.ok(expenseService.getAll());
     }
 
     @DeleteMapping("/{id}")
