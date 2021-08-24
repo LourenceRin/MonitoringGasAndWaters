@@ -1,5 +1,6 @@
 package com.example.monitoringgasandwater.entity;
 
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,10 +22,7 @@ public class ExpensesEntity {
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", columnDefinition = "VARCHAR(255)")
     private UUID id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity userId;
+    private String userName;
     private String typeResource;
     private Long spentResource;
 }

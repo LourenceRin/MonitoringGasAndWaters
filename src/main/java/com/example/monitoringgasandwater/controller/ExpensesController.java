@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,8 +19,9 @@ public class ExpensesController {
     private ExpenseService expenseService;
 
     @PostMapping("/addExpense")
-    public ResponseEntity addExpense(@RequestBody ExpensesEntity expense){
+    public ResponseEntity addExpense(@RequestBody ExpensesEntity expense, Principal principal){
         try{
+            expense.setUserName(principal.getName());
             expenseService.addExpense(expense);
             return ResponseEntity.ok("Затраты были сохранены!");
         }catch (Exception e){
@@ -40,4 +42,10 @@ public class ExpensesController {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
+
+    @GetMapping("/{userName}")
+    public ResponseEntity<List<ExpensesEntity>> getByUser(@PathVariable String userName){
+        return ResponseEntity.ok(expenseService.getExpensesByUser(userName));
+    }
+
 }

@@ -38,4 +38,8 @@ public class ExpenseService {
         return list;
     }
 
+    public List<ExpensesEntity> getExpensesByUser(String userName){
+        return repository.findAllByUserName(userName);
+    }
+
 }
